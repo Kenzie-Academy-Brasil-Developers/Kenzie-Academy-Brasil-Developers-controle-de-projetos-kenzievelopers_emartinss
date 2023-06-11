@@ -1,8 +1,8 @@
 import { QueryResult } from "pg";
 import { client } from "../../database/database";
-import { IDeveloperInfos } from "../../interfaces/interfaces";
+import { IDeveloperGet } from "../../interfaces/interfacesDevelopers";
 
-export const readDevelopersService = async (id: string): Promise<IDeveloperInfos[]> => {
+export const readDevelopersService = async (id: string): Promise<IDeveloperGet[]> => {
   const queryString: string = `SELECT
     "dl"."id" AS "developerId",
     "dl"."name" AS "developerName",
@@ -10,15 +10,17 @@ export const readDevelopersService = async (id: string): Promise<IDeveloperInfos
     "di"."preferredos" AS "developerInfoPreferredOS",
     "di"."developersince" AS "developerInfoDeveloperSince"
 
-FROM
-  developers "dl"
-LEFT JOIN
-  developerinfos "di" ON "dl".id = "di"."id"
+  FROM
+    developers AS "dl"
+  LEFT JOIN
+   developerinfos AS "di" 
+  ON 
+    "dl".id = "di"."developerid"
   WHERE
   "dl"."id" = ${id};
     `;
 
-  const queryResult: QueryResult<IDeveloperInfos> = await client.query(queryString);
+  const queryResult: QueryResult<IDeveloperGet> = await client.query(queryString);
 
   return queryResult.rows;
 };

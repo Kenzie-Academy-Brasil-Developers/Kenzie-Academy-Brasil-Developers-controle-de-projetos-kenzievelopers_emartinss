@@ -18,9 +18,9 @@ CREATE TABLE projects (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   description TEXT,
-  repository VARCHAR(120) NOT NULL,
-  startDate DATE NOT NULL,
-  endDate DATE,
-  developerId INT,
-  FOREIGN KEY (developerId) REFERENCES developers (id) ON DELETE SET NULL
+  "repository" VARCHAR(120) NOT NULL,
+  "startDate" DATE NOT NULL,
+  "endDate" DATE,
+  "developerId" INT,
+  FOREIGN KEY ("developerId") REFERENCES developers (id) ON DELETE SET NULL
 );

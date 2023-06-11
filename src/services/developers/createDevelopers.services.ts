@@ -1,11 +1,11 @@
 import { QueryResult } from "pg";
-import { IDeveloper, iDeveloperCreate } from "../../interfaces/interfaces";
+import { IDeveloper, iDeveloperCreate } from "../../interfaces/interfacesDevelopers";
 import format from "pg-format";
 import { client } from "../../database/database";
 
 export const registerDevelopersService = async (developerData: iDeveloperCreate): Promise<IDeveloper> => {
-  const values: String[] = Object.values(developerData);
-  const keys: string[] = Object.keys(developerData);
+  const values = Object.values(developerData);
+  const keys = Object.keys(developerData);
 
   const formatString: string = format(
     `
@@ -22,5 +22,3 @@ export const registerDevelopersService = async (developerData: iDeveloperCreate)
 
   return queryResult.rows[0];
 };
-
-

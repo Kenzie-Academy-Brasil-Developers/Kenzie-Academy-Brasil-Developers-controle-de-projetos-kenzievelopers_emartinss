@@ -1,5 +1,5 @@
 import format from "pg-format";
-import { IDeveloper } from "../../interfaces/interfaces";
+import { IDeveloper } from "../../interfaces/interfacesDevelopers";
 import { QueryConfig, QueryResult } from "pg";
 import { client } from "../../database/database";
 

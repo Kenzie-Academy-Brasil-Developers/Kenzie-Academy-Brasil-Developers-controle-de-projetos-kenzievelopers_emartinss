@@ -4,8 +4,8 @@ import {
   readDevelopersController,
   registerDevelopersController,
   updateDevelopersController,
-} from "../controllers/developers.controllers";
-import { verifyEmailExist, verifyIdExist } from "../middlewares/developers.middleware";
+} from "../controllers/developers/developers.controllers";
+import { verifyEmailExist, verifyIdExist } from "../middlewares/developers/developers.middleware";
 
 export const developerRoutes: Router = Router();
 

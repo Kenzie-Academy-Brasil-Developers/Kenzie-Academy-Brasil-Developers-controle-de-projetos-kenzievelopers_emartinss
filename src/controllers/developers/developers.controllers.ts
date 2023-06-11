@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { IDeveloper, IDeveloperInfos, iDeveloperCreate } from "../interfaces/interfaces";
-import { registerDevelopersService } from "../services/developers/createDevelopers.services";
-import { readDevelopersService } from "../services/developers/readDevelopers.services";
-import { updateDevelopersServices } from "../services/developers/updateDevelopers.services";
-import { deleteDevelopersServices } from "../services/developers/deleteDevelopers.services";
+import { IDeveloper, IDeveloperGet, iDeveloperCreate } from "../../interfaces/interfacesDevelopers";
+import { registerDevelopersService } from "../../services/developers/createDevelopers.services";
+import { readDevelopersService } from "../../services/developers/readDevelopers.services";
+import { updateDevelopersServices } from "../../services/developers/updateDevelopers.services";
+import { deleteDevelopersServices } from "../../services/developers/deleteDevelopers.services";
 
 export const registerDevelopersController = async (req: Request, res: Response): Promise<Response> => {
   const developerData: iDeveloperCreate = req.body;
@@ -14,7 +14,7 @@ export const registerDevelopersController = async (req: Request, res: Response):
 };
 
 export const readDevelopersController = async (req: Request, res: Response): Promise<Response> => {
-  const developers: IDeveloperInfos[] = await readDevelopersService(req.params.id);
+  const developers: IDeveloperGet[] = await readDevelopersService(req.params.id);
 
   return res.status(200).json(developers);
 };

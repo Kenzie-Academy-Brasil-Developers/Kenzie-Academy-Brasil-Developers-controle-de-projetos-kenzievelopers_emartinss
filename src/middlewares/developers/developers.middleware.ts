@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response, json } from "express";
-import { IDeveloper } from "../interfaces/interfaces";
-import { client } from "../database/database";
-import { QueryConfig, QueryResult } from "pg";
+import { IDeveloper } from "../../interfaces/interfacesDevelopers";
+import { client } from "../../database/database";
+import { QueryResult } from "pg";
 
-export const verifyEmailExist = async (req: Request, res: Response, next: NextFunction) => {
+export const verifyEmailExist = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   const insertQuery = `SELECT * FROM developers`;
 
   const readResult: QueryResult<IDeveloper> = await client.query(insertQuery);
@@ -16,7 +16,7 @@ export const verifyEmailExist = async (req: Request, res: Response, next: NextFu
   return next();
 };
 
-export const verifyIdExist = async (req: Request, res: Response, next: NextFunction) => {
+export const verifyIdExist = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   const insertQuery = `SELECT * FROM developers`;
 
   const readResult: QueryResult<IDeveloper> = await client.query(insertQuery);
