@@ -7,15 +7,15 @@ export const readDevelopersService = async (id: string): Promise<IDeveloperGet[]
     "dl"."id" AS "developerId",
     "dl"."name" AS "developerName",
     "dl"."email" AS "developerEmail",
-    "di"."preferredos" AS "developerInfoPreferredOS",
-    "di"."developersince" AS "developerInfoDeveloperSince"
+    "di"."preferredOS" AS "developerInfoPreferredOS",
+    "di"."developerSince" AS "developerInfoDeveloperSince"
 
   FROM
     developers AS "dl"
   LEFT JOIN
-   developerinfos AS "di" 
+  "developerInfos" AS "di" 
   ON 
-    "dl".id = "di"."developerid"
+    "dl".id = "di"."developerId"
   WHERE
   "dl"."id" = ${id};
     `;

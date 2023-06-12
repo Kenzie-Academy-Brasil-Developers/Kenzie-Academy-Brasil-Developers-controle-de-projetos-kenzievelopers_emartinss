@@ -6,12 +6,12 @@ CREATE TABLE developers (
   email VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE developerInfos (
+CREATE TABLE "developerInfos" (
   id SERIAL PRIMARY KEY,
-  developerSince DATE NOT NULL,
-  preferredOS OS NOT NULL,
-  developerId INT NOT NULL,
-  FOREIGN KEY (developerId) REFERENCES developers (id) ON DELETE CASCADE
+  "developerSince" DATE NOT NULL,
+  "preferredOS" OS NOT NULL,
+  "developerId" INT NOT NULL,
+  FOREIGN KEY ("developerId") REFERENCES developers (id) ON DELETE CASCADE
 );
 
 CREATE TABLE projects (

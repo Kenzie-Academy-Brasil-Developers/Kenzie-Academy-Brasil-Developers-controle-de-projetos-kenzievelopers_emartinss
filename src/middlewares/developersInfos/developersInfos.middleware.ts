@@ -5,7 +5,7 @@ import { IDeveloperInfos } from "../../interfaces/interfacesDevelopers";
 
 export const verifyOs = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   const developerData = req.body;
-  if (developerData.preferredos !== "Windows" && developerData.preferredos !== "MacOS" && developerData.preferredos !== "Linux") {
+  if (developerData.preferredOS !== "Windows" && developerData.preferredOS !== "MacOS" && developerData.preferredOS !== "Linux") {
     return res.status(400).json({
       message: "Invalid OS, select one of the following options",
       options: ["Windows", "MacOS", "Linux"],
@@ -17,12 +17,12 @@ export const verifyOs = async (req: Request, res: Response, next: NextFunction):
 
 export const verifyInformationsUpdate = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
-  const queryString = `SELECT * FROM developerinfos where developerid = ${id};`;
+  const queryString = `SELECT * FROM "developerInfos" where "developerId" = ${id};`;
 
   const result: QueryResult = await client.query(queryString);
   const developer: IDeveloperInfos[] = result.rows;
 
-  if (developer.length > 0) {
+  if (developer.length > 2) {
     return res.status(409).json({ message: "information already entered" });
   }
 
@@ -30,7 +30,7 @@ export const verifyInformationsUpdate = async (req: Request, res: Response, next
 };
 
 export const verifyIdExist = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-  const insertQuery = `SELECT * FROM developerinfos`;
+  const insertQuery = `SELECT * FROM "developerInfos"`;
 
   const readResult: QueryResult<IDeveloperInfos> = await client.query(insertQuery);
 

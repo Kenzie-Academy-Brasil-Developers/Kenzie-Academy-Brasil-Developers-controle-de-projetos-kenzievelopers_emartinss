@@ -2,7 +2,7 @@ import { QueryResult } from "pg";
 import { client } from "../../database/database";
 import { IDeveloper } from "../../interfaces/interfacesDevelopers";
 
-export const readProjectsServices = async (id: string) => {
+export const readProjectsServices = async (id: string): Promise<IDeveloper[]> => {
   const queryString: string = `SELECT
     "pj"."id" AS "projectId",
     "pj"."name" AS "projectName",

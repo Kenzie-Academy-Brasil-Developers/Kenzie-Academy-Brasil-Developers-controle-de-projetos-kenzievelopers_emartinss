@@ -8,9 +8,9 @@ export type iDeveloperCreate = Omit<IDeveloper, "id">;
 
 export interface IDeveloperInfos {
   id: number;
-  developersince: Date;
-  preferredos: "Windows" | "Linux" | "MacOS.";
-  developerid: number;
+  developerSince: Date;
+  preferredOS: "Windows" | "Linux" | "MacOS.";
+  developerId: number;
 }
 
 export interface IDeveloperGet {
