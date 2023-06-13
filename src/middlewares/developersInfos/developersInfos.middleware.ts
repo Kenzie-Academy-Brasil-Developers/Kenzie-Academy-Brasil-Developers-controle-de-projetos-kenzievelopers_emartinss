@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { QueryResult } from "pg";
 import { client } from "../../database/database";
 import { IDeveloperInfos } from "../../interfaces/interfacesDevelopers";
+import { AppError } from "../../error";
 
 export const verifyOs = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   const developerData = req.body;
@@ -23,7 +24,7 @@ export const verifyInformationsUpdate = async (req: Request, res: Response, next
   const developer: IDeveloperInfos[] = result.rows;
 
   if (developer.length > 0) {
-    return res.status(409).json({ message: "information already entered" });
+    throw new AppError("information already entered", 409);
   }
 
   return next();
@@ -40,7 +41,7 @@ export const verifyIdExist = async (req: Request, res: Response, next: NextFunct
   const productIndex: boolean = allDevelopers.some((item): boolean => item.id === Number(id));
 
   if (!productIndex) {
-    return res.status(404).json({ message: "Developer not found." });
+    throw new AppError("Developer not found", 404);
   }
 
   return next();

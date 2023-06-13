@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { client } from "../../database/database";
 import { IProjects } from "../../interfaces/interfacesProjects";
 import { QueryResult } from "pg";
+import { AppError } from "../../error";
 
 export const verifyIdExistPost = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   const insertQuery = `SELECT * FROM "developers"`;
@@ -15,7 +16,7 @@ export const verifyIdExistPost = async (req: Request, res: Response, next: NextF
   const productIndex: boolean = allProjects.some((item): boolean => item.id === Number(id));
 
   if (!productIndex) {
-    return res.status(404).json({ message: "developer not found." });
+    throw new AppError("Developer not found", 404);
   }
 
   return next();
@@ -32,7 +33,7 @@ export const verifyIdExistGet = async (req: Request, res: Response, next: NextFu
   const productIndex: boolean = allDevelopers.some((item): boolean => item.id === Number(id));
 
   if (!productIndex) {
-    return res.status(404).json({ message: "Project not found." });
+    throw new AppError("Project not found", 404);
   }
 
   return next();
