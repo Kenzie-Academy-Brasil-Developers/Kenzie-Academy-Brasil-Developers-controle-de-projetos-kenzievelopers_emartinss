@@ -4,7 +4,7 @@ import { IProjects } from "../../interfaces/interfacesProjects";
 import { QueryResult } from "pg";
 
 export const verifyIdExistPost = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-  const insertQuery = `SELECT * FROM "developerInfos"`;
+  const insertQuery = `SELECT * FROM "developers"`;
 
   const readResult: QueryResult<IProjects> = await client.query(insertQuery);
 
@@ -12,7 +12,7 @@ export const verifyIdExistPost = async (req: Request, res: Response, next: NextF
 
   const id = req.body.developerId;
 
-  const productIndex: boolean = allProjects.some((item): boolean => item.developerId === Number(id));
+  const productIndex: boolean = allProjects.some((item): boolean => item.id === Number(id));
 
   if (!productIndex) {
     return res.status(404).json({ message: "developer not found." });

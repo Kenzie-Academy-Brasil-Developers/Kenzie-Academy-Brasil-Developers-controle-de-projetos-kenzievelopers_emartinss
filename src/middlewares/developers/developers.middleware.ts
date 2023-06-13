@@ -11,7 +11,7 @@ export const verifyEmailExist = async (req: Request, res: Response, next: NextFu
   const allDevelopers: IDeveloper[] = readResult.rows;
 
   if (allDevelopers.some((developer) => req.body.email === developer.email)) {
-    return res.status(409).json({ error: "Email already exists " });
+    return res.status(409).json({ message: "Email already exists" });
   }
   return next();
 };
@@ -27,7 +27,7 @@ export const verifyIdExist = async (req: Request, res: Response, next: NextFunct
   const productIndex: boolean = allDevelopers.some((item): boolean => item.id === Number(id));
 
   if (!productIndex) {
-    return res.status(404).json({ error: " Developer not found." });
+    return res.status(404).json({ message: "Developer not found." });
   }
 
   return next();

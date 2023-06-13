@@ -2,7 +2,7 @@ import { QueryResult } from "pg";
 import { client } from "../../database/database";
 import { IDeveloper } from "../../interfaces/interfacesDevelopers";
 
-export const readProjectsServices = async (id: string): Promise<IDeveloper[]> => {
+export const readProjectsServices = async (id: string): Promise<IDeveloper> => {
   const queryString: string = `SELECT
     "pj"."id" AS "projectId",
     "pj"."name" AS "projectName",
@@ -24,5 +24,5 @@ WHERE
 
   const queryResult: QueryResult<IDeveloper> = await client.query(queryString);
 
-  return queryResult.rows;
+  return queryResult.rows[0];
 };

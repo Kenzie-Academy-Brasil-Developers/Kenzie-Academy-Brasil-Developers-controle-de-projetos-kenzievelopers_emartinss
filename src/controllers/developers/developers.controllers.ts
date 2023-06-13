@@ -14,7 +14,7 @@ export const registerDevelopersController = async (req: Request, res: Response):
 };
 
 export const readDevelopersController = async (req: Request, res: Response): Promise<Response> => {
-  const developers: IDeveloperGet[] = await readDevelopersService(req.params.id);
+  const developers: IDeveloperGet = await readDevelopersService(req.params.id);
 
   return res.status(200).json(developers);
 };

@@ -3,7 +3,7 @@ import { IProjectCreate, IProjects } from "../../interfaces/interfacesProjects";
 import { QueryConfig, QueryResult } from "pg";
 import { client } from "../../database/database";
 
-export const updateProjectsServices = async (projectData: IProjectCreate, id: string): Promise<IProjects[]> => {
+export const updateProjectsServices = async (projectData: IProjectCreate, id: string): Promise<IProjects> => {
   const updateColumns = Object.keys(projectData);
   const updateValues = Object.values(projectData);
 
@@ -25,5 +25,5 @@ export const updateProjectsServices = async (projectData: IProjectCreate, id: st
 
   const queryResult: QueryResult<IProjects> = await client.query(queryConfig);
 
-  return queryResult.rows;
+  return queryResult.rows[0];
 };

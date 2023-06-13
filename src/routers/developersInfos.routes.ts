@@ -5,4 +5,4 @@ import { verifyIdExist } from "../middlewares/developers/developers.middleware";
 
 export const developerInfosRoutes: Router = Router();
 
-developerInfosRoutes.post("/:id/infos", verifyOs, verifyInformationsUpdate, verifyIdExist, registerDevelopersInfosController);
+developerInfosRoutes.post("/:id/infos", verifyIdExist, verifyInformationsUpdate, verifyOs, registerDevelopersInfosController);

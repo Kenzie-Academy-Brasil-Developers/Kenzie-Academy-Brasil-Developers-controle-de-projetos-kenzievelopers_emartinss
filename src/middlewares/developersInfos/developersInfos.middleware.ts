@@ -22,7 +22,7 @@ export const verifyInformationsUpdate = async (req: Request, res: Response, next
   const result: QueryResult = await client.query(queryString);
   const developer: IDeveloperInfos[] = result.rows;
 
-  if (developer.length > 2) {
+  if (developer.length > 0) {
     return res.status(409).json({ message: "information already entered" });
   }
 
@@ -40,7 +40,7 @@ export const verifyIdExist = async (req: Request, res: Response, next: NextFunct
   const productIndex: boolean = allDevelopers.some((item): boolean => item.id === Number(id));
 
   if (!productIndex) {
-    return res.status(404).json({ error: " Developer not found." });
+    return res.status(404).json({ message: "Developer not found." });
   }
 
   return next();

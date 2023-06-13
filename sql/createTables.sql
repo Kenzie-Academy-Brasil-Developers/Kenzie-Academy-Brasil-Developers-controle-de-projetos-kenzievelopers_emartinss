@@ -1,4 +1,4 @@
-CREATE TYPE OS AS ENUM ('Windows', 'Linux', 'MacOS');
+CREATE TYPE "OS" AS ENUM ('Windows', 'Linux', 'MacOS');
 
 CREATE TABLE developers (
   id SERIAL PRIMARY KEY,
@@ -9,8 +9,8 @@ CREATE TABLE developers (
 CREATE TABLE "developerInfos" (
   id SERIAL PRIMARY KEY,
   "developerSince" DATE NOT NULL,
-  "preferredOS" OS NOT NULL,
-  "developerId" INT NOT NULL,
+  "preferredOS" "OS" NOT NULL,
+  "developerId" INT UNIQUE NOT NULL,
   FOREIGN KEY ("developerId") REFERENCES developers (id) ON DELETE CASCADE
 );
 
